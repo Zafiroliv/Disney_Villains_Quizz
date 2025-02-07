@@ -1,30 +1,37 @@
 import streamlit as st
 
-# Preguntas y respuestas
-preguntas = [
-    ("¿Cuál es tu mayor motivación?", 
-     {"Poder": "Maléfica", "Riqueza": "Scar", "Venganza": "Úrsula", "Diversión": "Hades"}),
+# Definir preguntas y opciones
+preguntas = {
+    "¿Qué te motiva más?": {
+        "a": "El poder",
+        "b": "La venganza",
+        "c": "La riqueza",
+        "d": "La diversión"
+    },
+    "¿Cómo prefieres resolver problemas?": {
+        "a": "Con magia y engaños",
+        "b": "Con fuerza bruta",
+        "c": "Con estrategias y manipulación",
+        "d": "Haciendo que otros lo hagan por mí"
+    },
+    "¿Cuál es tu frase favorita?": {
+        "a": "Espejito, espejito...",
+        "b": "Yo soy el amo de todo lo que veo",
+        "c": "Pobres almas en desgracia...",
+        "d": "La vida es un juego, ¡y yo hago las reglas!"
+    }
+}
 
-    ("¿Cuál es tu mayor fortaleza?", 
-     {"Magia": "Maléfica", "Astucia": "Scar", "Manipulación": "Úrsula", "Carisma": "Hades"}),
-
-    ("¿Cómo te describen tus enemigos?", 
-     {"Temible": "Maléfica", "Traicionero": "Scar", "Seductora": "Úrsula", "Sarcasmo puro": "Hades"})
-]
+resultados = {
+    "a": "Maléfica",
+    "b": "Scar",
+    "c": "Úrsula",
+    "d": "Hades"
+}
 
 st.title("¿Qué villano de Disney eres?")
-st.write("Responde estas preguntas para descubrirlo:")
 
 respuestas = []
-
-for pregunta, opciones in preguntas:
-    respuesta = st.radio(pregunta, list(opciones.keys()))
-    respuestas.append(opciones[respuesta])
-
-# Determinar el villano más elegido
-resultado = max(set(respuestas), key=respuestas.count)
-
-st.subheader(f"Eres... {resultado}!")
-
-# Mostrar imagen (deberás subir imágenes a una carpeta "images" en tu repo)
-st.image(f"images/{resultado.lower()}.jpg", caption=resultado)
+for pregunta, opciones in preguntas.items():
+    opcion = st.radio(pregunta, list(opciones.values()))
+    respuestas.append(list(opciones.keys())[list(opciones.values()).index(opcion
