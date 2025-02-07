@@ -34,4 +34,11 @@ st.title("¿Qué villano de Disney eres?")
 respuestas = []
 for pregunta, opciones in preguntas.items():
     opcion = st.radio(pregunta, list(opciones.values()))
-    respuestas.append(list(opciones.keys())[list(opciones.values()).index(opcion
+    respuestas.append(list(opciones.keys())[list(opciones.values()).index(opcion)])
+
+# Contar la opción más elegida
+villano = max(set(respuestas), key=respuestas.count)
+
+st.subheader(f"Eres {resultados[villano]}!")
+
+st.image(f"https://example.com/{resultados[villano].lower()}.jpg", width=300)  # Reemplazar con imágenes reales
